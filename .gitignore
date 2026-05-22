@@ -1,0 +1,13 @@
+venv/
+__pycache__/
+*.pyc
+*.pth
+*.pt
+checkpoints/
+data/raw/
+data/processed/
+results/
+.ipynb_checkpoints/
+*.egg-info/
+dist/
+.DS_Store
