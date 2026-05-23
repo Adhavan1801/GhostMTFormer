@@ -45,3 +45,67 @@ GhostMTFormer combines two complementary encoders with cross-attention fusion an
 ---
 
 ## Project Structure
+GhostMTFormer/
+├── configs/
+│   └── default.yaml          # all hyperparameters
+├── src/
+│   ├── dataset.py            # HAM10000 data pipeline
+│   ├── losses.py             # Dice + BCE + Tversky + Focal + Boundary
+│   ├── metrics.py            # Dice, IoU, HD95
+│   ├── train.py              # training loop
+│   ├── evaluate.py           # test evaluation + TTA
+│   └── model/
+│       ├── ghost_encoder.py  # GhostNet local encoder
+│       ├── global_encoder.py # CNN global encoder
+│       ├── cfca.py           # cross-feature attention + XFF bottleneck
+│       ├── decoder.py        # boundary-refined decoder
+│       └── ghostmtformer.py  # full model assembly
+├── notebooks/
+│   └── gradcam_analysis.ipynb
+└── requirements.txt
+
+---
+
+## Setup
+
+```bash
+git clone https://github.com/YourUsername/GhostMTFormer.git
+cd GhostMTFormer
+
+python -m venv venv
+venv\Scripts\activate          # Windows
+pip install -r requirements.txt
+```
+
+---
+
+## Training
+
+```bash
+python -m src.train
+```
+
+---
+
+## Evaluation
+
+```bash
+python -m src.evaluate
+```
+
+---
+
+## Environment
+
+- Python 3.11
+- PyTorch 2.7 + CUDA 12.8
+- RTX 5060 8GB VRAM
+
+---
+
+## References
+
+- [GhostNet](https://arxiv.org/abs/1911.11907) — Han et al., CVPR 2020
+- [CFFormer](https://www.sciencedirect.com/science/article/pii/S0957417425003702) — Zhang et al., Expert Systems 2025
+- [ECA-Net](https://arxiv.org/abs/1910.03151) — Wang et al., CVPR 2020
+- [HAM10000](https://arxiv.org/abs/1803.10417) — Tschandl et al., 2018
