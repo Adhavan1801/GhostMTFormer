@@ -8,7 +8,7 @@ data:
   masks_dir: data/raw/masks
   metadata_csv: data/raw/HAM10000_metadata.csv
   processed_dir: data/processed
-  img_size: 512
+  img_size: 256
   num_workers: 0
 
 split:

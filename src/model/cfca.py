@@ -78,30 +78,38 @@ class CFCAModule(nn.Module):
         B, _, H, W = ghost_feat.shape
 
         # align channels + ECA recalibration
-        g = self.eca_ghost(self.proj_ghost(ghost_feat))    # (B, C, H, W)
-        t = self.eca_global(self.proj_global(global_feat)) # (B, C, H, W)
+        g = self.eca_ghost(self.proj_ghost(ghost_feat))
+        t = self.eca_global(self.proj_global(global_feat))
 
-        # make sure spatial sizes match — resize global to ghost size
+        # align spatial sizes
         if g.shape[2:] != t.shape[2:]:
-            t = F.interpolate(t, size=g.shape[2:], mode="bilinear",
-                              align_corners=False)
+            t = F.interpolate(t, size=g.shape[2:],
+                              mode="bilinear", align_corners=False)
 
-        C = self.align_ch
+        # ── pool to max 16×16 before attention ──
+        # this keeps attention tractable regardless of input resolution
+        attn_size = (min(H, 16), min(W, 16))
+        g_pool = F.adaptive_avg_pool2d(g, attn_size)
+        t_pool = F.adaptive_avg_pool2d(t, attn_size)
 
-        # flatten spatial → token sequence (B, H*W, C)
-        g_seq = g.flatten(2).transpose(1, 2)
-        t_seq = t.flatten(2).transpose(1, 2)
+        C    = self.align_ch
+        Hp,Wp = attn_size
 
-        # ghost queries global context
+        g_seq = g_pool.flatten(2).transpose(1, 2)  # (B, Hp*Wp, C)
+        t_seq = t_pool.flatten(2).transpose(1, 2)
+
         g_out, _ = self.attn_g2t(g_seq, t_seq, t_seq)
-        # global queries local detail
         t_out, _ = self.attn_t2g(t_seq, g_seq, g_seq)
 
-        # reshape back to spatial (B, C, H, W)
-        g_out = g_out.transpose(1, 2).view(B, C, H, W)
-        t_out = t_out.transpose(1, 2).view(B, C, H, W)
+        g_out = g_out.transpose(1, 2).view(B, C, Hp, Wp)
+        t_out = t_out.transpose(1, 2).view(B, C, Hp, Wp)
 
-        # residual + project back to original channels
+        # upsample attention output back to original spatial size
+        g_out = F.interpolate(g_out, size=(H, W),
+                              mode="bilinear", align_corners=False)
+        t_out = F.interpolate(t_out, size=(H, W),
+                              mode="bilinear", align_corners=False)
+
         ghost_out  = self.out_ghost(g_out)  + ghost_feat
         global_out = self.out_global(t_out) + F.interpolate(
             global_feat, size=ghost_feat.shape[2:],
