@@ -9,7 +9,7 @@ data:
   metadata_csv: data/raw/HAM10000_metadata.csv
   processed_dir: data/processed
   img_size: 512
-  num_workers: 4
+  num_workers: 0
 
 split:
   train: 0.80
