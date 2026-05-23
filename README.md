@@ -20,7 +20,7 @@ GhostMTFormer combines two complementary encoders with cross-attention fusion an
 
 ## Dataset
 
-[HAM10000](https://www.kaggle.com/datasets/surajghuwalewala/ham1000-segmentation-and-classification) — 10,015 dermoscopic images with expert segmentation masks
+[HAM10000](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DBW86T) — 10,015 dermoscopic images with expert segmentation masks
 
 | Split | Images |
 |-------|--------|
@@ -32,13 +32,13 @@ GhostMTFormer combines two complementary encoders with cross-attention fusion an
 
 ## Results
 
-> Evaluated on HAM10000 test set with Test-Time Augmentation (TTA)
+> Evaluated on HAM10000 test set (1,002 images) with Test-Time Augmentation (TTA)
 
 | Metric | Score |
 |--------|-------|
-| Dice   | TBD   |
-| IoU    | TBD   |
-| HD95   | TBD   |
+| Dice   | 93.998% ± 8.65% |
+| IoU    | 89.63% ± 11.89% |
+| HD95   | 3.24 px |
 
 *Results will be updated after full training completes.*
 
@@ -69,7 +69,7 @@ GhostMTFormer/
 ## Setup
 
 ```bash
-git clone https://github.com/YourUsername/GhostMTFormer.git
+git clone https://github.com/adhavan1801/GhostMTFormer.git
 cd GhostMTFormer
 
 python -m venv venv
