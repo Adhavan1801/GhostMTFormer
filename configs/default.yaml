@@ -1,0 +1,68 @@
+# ─────────────────────────────────────────
+#  GhostMTFormer — Central Configuration
+# ─────────────────────────────────────────
+
+data:
+  root: data/raw
+  images_dir: data/raw/images
+  masks_dir: data/raw/masks
+  metadata_csv: data/raw/HAM10000_metadata.csv
+  processed_dir: data/processed
+  img_size: 512
+  num_workers: 4
+
+split:
+  train: 0.80
+  val: 0.10
+  test: 0.10
+  seed: 42
+
+augmentation:
+  horizontal_flip: true
+  vertical_flip: true
+  rotation_limit: 30
+  scale_limit: 0.2
+  brightness_limit: 0.2
+  contrast_limit: 0.2
+  saturation_limit: 0.2
+
+model:
+  name: GhostMTFormer
+  in_channels: 3
+  out_channels: 1
+  base_channels: 64
+  deep_supervision: true
+
+training:
+  epochs: 100
+  batch_size: 8
+  learning_rate: 3.0e-4
+  weight_decay: 3.0e-5
+  grad_clip: 1.0
+  mixed_precision: true
+  scheduler: cosine
+  warmup_epochs: 5
+
+loss:
+  dice_weight: 1.0
+  bce_weight: 1.0
+  boundary_weight: 0.5
+  tversky_weight: 0.5
+  focal_weight: 0.5
+  tversky_alpha: 0.3
+  tversky_beta: 0.7
+  focal_gamma: 2.0
+
+inference:
+  threshold: 0.5
+  tta: true
+  mc_dropout_passes: 25
+  uncertainty_threshold: 0.15
+
+paths:
+  checkpoints: checkpoints
+  results: results
+  logs: results/logs
+
+explainability:
+  gradcam_layer: decoder_stage1
