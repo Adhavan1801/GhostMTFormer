@@ -110,12 +110,12 @@ This is the mechanism that drives HD95 from the initial baseline down to **3.24p
 
 ### Prediction Samples
 
-<img src="docs/GhostMTFormer_prediction_collage.png" alt="Segmentation Results" width="860"/>
+<img src="docs/GhostMTFormer_prediction_collage.png" alt="Segmentation Results" width="600"/>
 *Each row: original dermoscopic image · ground truth mask · predicted mask · overlay*
 
 ### Explainability
 
-<img src="docs/gradcam_analysis.png" alt="Grad-CAM Analysis" width="860"/>
+<img src="docs/gradcam_analysis.png" alt="Grad-CAM Analysis" width="600"/>
 
 Each row shows: **Original image → Ground truth → Prediction → Grad-CAM heatmap → Uncertainty map**
 
