@@ -24,6 +24,8 @@
 
 ## Results
 
+## Results
+
 > Evaluated on HAM10000 test set (1,002 images) with Test-Time Augmentation (TTA)
 
 | Metric | Score |
@@ -31,9 +33,22 @@
 | Dice   | 93.998% ± 8.65% |
 | IoU    | 89.63% ± 11.89% |
 | HD95   | 3.24 px |
+| Params | 61.74M |
 
-*Results will be updated after full training completes.*
+## Comparison
 
+| Model | Dice | IoU | HD95 | Params |
+|-------|------|-----|------|--------|
+| GhostMTFormer (paper) | 90.64% | 84.05% | 12.82px | 13.57M |
+| CFFormer | 92.20% | 86.55% | 3.06px | 99.56M |
+| **GhostMTFormer v2 (this)** | **94.00%** | **89.63%** | **3.24px** | **61.74M** |
+
+## Explainability
+
+![Grad-CAM Analysis](results/gradcam_analysis.png)
+
+> Grad-CAM heatmaps show the model focusing on lesion boundaries.
+> Uncertainty maps highlight ambiguous regions where expert review is recommended.
 ---
 
 ## Project Structure
