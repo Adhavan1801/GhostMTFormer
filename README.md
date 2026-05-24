@@ -1,9 +1,5 @@
 <div align="center">
 
-<img src="docs/GhostMTFormer_model_architecture.png" alt="GhostMTFormer Architecture" width="860"/>
-
-<br/>
-
 # GhostMTFormer
 
 ### Lightweight Dual-Encoder Network for Precise Skin Lesion Segmentation
@@ -45,6 +41,12 @@ Most hybrid architectures solve this by stacking heavy transformer components on
 ---
 
 ## Architecture
+
+<div align="center">
+<img src="docs/GhostMTFormer_model_architecture.png" alt="GhostMTFormer Architecture" width="700"/>
+</div>
+
+<br/>
 
 GhostMTFormer follows an **encoder → cross-attention → fusion → decoder** paradigm with five key design decisions:
 
@@ -108,13 +110,12 @@ This is the mechanism that drives HD95 from the initial baseline down to **3.24p
 
 ### Prediction Samples
 
-![Segmentation Results](docs/GhostMTFormer_prediction_collage.png)
-
+<img src="results/GhostMTFormer_prediction_collage.png" alt="Segmentation Results" width="860"/>
 *Each row: original dermoscopic image · ground truth mask · predicted mask · overlay*
 
 ### Explainability
 
-![Grad-CAM Analysis](docs/gradcam_analysis.png)
+<img src="results/gradcam_analysis.png" alt="Grad-CAM Analysis" width="860"/>
 
 Each row shows: **Original image → Ground truth → Prediction → Grad-CAM heatmap → Uncertainty map**
 
