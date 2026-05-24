@@ -5,16 +5,8 @@
 ---
 
 ## Architecture
+![GhostMTFormer Architecture](docs/GhostMTFormer_model_architecture.png)
 
-GhostMTFormer combines two complementary encoders with cross-attention fusion and boundary-aware decoding:
-
-- **GhostNet Encoder** — captures local texture and fine lesion edges efficiently using Ghost modules
-- **Global CNN Encoder** — captures long-range lesion structure using dilated convolutions
-- **CFCA Module** — bidirectional cross-attention between the two streams at 3 scales
-- **XFF Bottleneck** — fuses the deepest features from both encoders
-- **Boundary-Refined Decoder** — sharpens lesion contours using Boundary Refinement Modules (BRM)
-- **Deep Supervision** — auxiliary outputs at every decoder stage for stronger gradient flow
-- **Grad-CAM + MC Dropout** — explainability and uncertainty estimation
 
 ---
 
