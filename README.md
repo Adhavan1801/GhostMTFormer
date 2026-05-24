@@ -45,7 +45,7 @@
 
 ## Explainability
 
-![Grad-CAM Analysis](results/gradcam_analysis.png)
+![Grad-CAM Analysis](docs/gradcam_analysis.png)
 
 > Grad-CAM heatmaps show the model focusing on lesion boundaries.
 > Uncertainty maps highlight ambiguous regions where expert review is recommended.
