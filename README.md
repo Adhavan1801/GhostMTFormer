@@ -298,15 +298,7 @@ jupyter notebook notebooks/gradcam_analysis.ipynb
 
 ---
 
-## References
 
-- **GhostNet** — Han et al., *More Features from Cheap Operations*, CVPR 2020 · [arxiv](https://arxiv.org/abs/1911.11907)
-- **ECA-Net** — Wang et al., *Efficient Channel Attention for Deep CNNs*, CVPR 2020 · [arxiv](https://arxiv.org/abs/1910.03151)
-- **U-Net** — Ronneberger et al., MICCAI 2015 · [arxiv](https://arxiv.org/abs/1505.04597)
-- **HAM10000** — Tschandl et al., *The HAM10000 dataset*, Nature Scientific Data 2018 · [arxiv](https://arxiv.org/abs/1803.10417)
-- **Grad-CAM** — Selvaraju et al., ICCV 2017 · [arxiv](https://arxiv.org/abs/1610.02391)
-
----
 
 ## Author
 
